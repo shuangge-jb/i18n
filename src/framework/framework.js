@@ -1,11 +1,6 @@
-define(['angular', 'dbm.config',
-        'i18nService',
-        'database.ctrl', 'route'
-    ],
-    function(angular) {
-        'use strict';
-        var dependency = ['dbm.config'];
+'use strict';
+require('src/business/dataMgmtWebsite/routeConfig/dbmRouteConfig');
 
-        var module = angular.module('framework', dependency);
-        return module;
-    });
+var dependency = ['dbm.config'];
+var framework = angular.module('framework', dependency);
+module.exports=framework;

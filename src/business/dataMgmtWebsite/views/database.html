@@ -1,5 +1,8 @@
 <div>
-    <span ng-bind="text"></span>
-    <span ng-bind="i18n.language"></span>
-
+	<span>2333</span>
+	<span><button ui-sref=".instance_database" ng-bind="i18n.instance_database"></button></span>
+	<span><button ui-sref=".instance_redis" ng-bind="i18n.instance_redis"></button></span>
+	
 </div>
+<!-- 二级内容，将点击的按钮对应的页面填到这里-->
+<div ui-view></div>

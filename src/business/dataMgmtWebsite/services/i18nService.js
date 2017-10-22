@@ -1,19 +1,26 @@
-define(['angular', 'dbm.config'], function(angular) {
-    'use strict';
-    var service = function($q,locale) {
-        this.locale=locale;
-        this.get = function(locale, name) {
-            return $q(function(resolve) {
-                require(['i18n/' +locale + '/' + name], function(mod) {
-                    resolve(mod);
-                    
-                });
+'use strict';
+var service = function($q, locale) {
+    this.locale = locale;
+    this.get = function(locale, name) {
+        if (locale === 'zh-CN') {
+           return new Promise((resolve, reject) => {
+              return  require.ensure([], function(require) {
+                    let template = require('i18n/zh-CN/business');
+                    resolve(template);
+                }, () => {}, 'i18n.zh-CN');
             });
-            // return {'language':'语言'};
-        };
+        }
+        if (locale === 'en-US') {
+           return new Promise((resolve, reject) => {
+                return require.ensure([], function(require) {
+                    let template = require('i18n/en-US/business');
+                    resolve(template);
+                }, () => {}, 'i18n.en-US');
+            });
+        }
+
+
+
     };
-    // var module = angular.module('dbm.config');
-    // module.service('i18nService', ['$q','locale', service]);
-    // return module;
-    return service;
-});
+};
+module.exports = service;
